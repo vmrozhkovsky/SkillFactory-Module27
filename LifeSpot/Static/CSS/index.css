@@ -8,17 +8,21 @@
     padding-left: 15%;
 }
 a:hover{
-    
+    color: blue;
 }
 header{
-    padding-left: 1%;
-    padding-top: 1.2%;
+    color: black;
+    /*padding-left: 1%;*/
+    /*padding-top: 1.2%;*/
 }
 footer {
     position: absolute;
+    /*background-color: black;*/
     bottom: 0;
     font-size: medium;
     color: dimgrey;
+    line-height: 50%;
+    padding-left: 30%;
 }
 aside{
     height: 100%; /* Высота в полный размер. Этот параметр можно убрать, если вы хотите выставлять высоту автоматически */
@@ -32,6 +36,12 @@ aside{
     padding-top: 2%;
     font-size: large;
 }
-body{
+body {
     padding-left: 11%;
 }
+header,footer,body,.video-container{
+    background-color: #5681c4;
+}
+/*header,body,.video-container{*/
+/*    background-color: #5681c4;*/
+/*}*/
