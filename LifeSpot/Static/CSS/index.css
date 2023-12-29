@@ -12,12 +12,9 @@ a:hover{
 }
 header{
     color: black;
-    /*padding-left: 1%;*/
-    /*padding-top: 1.2%;*/
 }
 footer {
     position: absolute;
-    /*background-color: black;*/
     bottom: 0;
     font-size: medium;
     color: dimgrey;
@@ -42,6 +39,3 @@ body {
 header,footer,body,.video-container{
     background-color: #5681c4;
 }
-/*header,body,.video-container{*/
-/*    background-color: #5681c4;*/
-/*}*/
