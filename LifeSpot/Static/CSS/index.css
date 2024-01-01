@@ -10,7 +10,15 @@
 a:hover{
     color: blue;
 }
+input[type=search]{
+    width: 30%;
+}
+input[type=search]:focus {
+    background-color: lightblue;
+}
 header{
+    padding-left: 1%;
+    padding-top: 1.2%;
     color: black;
 }
 footer {
