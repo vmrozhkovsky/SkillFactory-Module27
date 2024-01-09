@@ -1,0 +1,24 @@
+﻿<header>
+    <h1>LifeSpot - прямые трансляции с улиц</h1>
+    <p>Покажем, что происходит прямо сейчас</p>
+    <div>
+        <form>
+            <p>
+                <input type="text" name="q" placeholder="Поиск по сайт" size=50% oninput="let elements = document.getElementsByTagName('input');
+                let element = elements[0];
+                let elementText = element.value;
+                let videoElements = document.body.getElementsByClassName('video-container');
+                for (let i = 0; i < videoElements.length; i++) 
+                {
+                    let childElements = videoElements[i];
+                    let videoDescription = childElements.getElementsByTagName('h3')[0];
+                    if (!(videoDescription.innerText.toLowerCase().includes(elementText.toLowerCase()))){
+                        videoElements[i].style.display = 'none';
+                    }
+                }
+                ">
+                <input type="submit" value="Найти">
+            </p>
+        </form>
+    </div>
+</header>

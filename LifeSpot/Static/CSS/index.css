@@ -10,10 +10,10 @@
 a:hover{
     color: blue;
 }
-input[type=search]{
+input[type=text]{
     width: 30%;
 }
-input[type=search]:focus {
+input[type=text]:focus {
     background-color: lightblue;
 }
 header{
