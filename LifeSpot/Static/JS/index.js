@@ -1,17 +1,16 @@
-﻿document.getElementById("search").oninput = function() {myFunction()};
+﻿let userData = new Map();
+function getUserData (){
 
-function myFunction() {
-    console.log('Start');
-    let elements = document.getElementsByTagName('input');
-    let element = elements[0];
-    let elementText = element.value;
-    let videoElements = document.body.getElementsByClassName('video-container');
-    for (let i = 0; i < videoElements.length; i++)
-    {
-        let childElements = videoElements[i];
-        let videoDescription = childElements.getElementsByTagName('h3')[0];
-        if (!(videoDescription.innerText.toLowerCase().includes(elementText.toLowerCase()))){
-            videoElements[i].style.display = 'none';
-        }
+    let userAgentString = window.navigator.userAgent;
+    let userName = prompt('Введите своё имя:');
+    userData.set('UserAgentString', userAgentString)
+            .set('UserName', userName)
+}
+function ageCheck (){
+    let userAge = prompt('Введите свой возраст:');
+    userData.set('UserAge', userAge)
+    if (userAge < 18){
+        alert('Ваш возраст меньше 18 лет!');
+        window.location.href = "http://www.google.com";
     }
 }
