@@ -31,8 +31,7 @@ namespace LifeSpot
                endpoints.MapGet("/", async context =>
                {
                    var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "index.html");
-                  
-                   // Загружаем шаблон страницы, вставляя в него элементы
+                   
                    var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
                        .Replace("<!--HEADER-->", headerHtml)
                        .Replace("<!--SIDEBAR-->", sideBarHtml)
@@ -44,8 +43,18 @@ namespace LifeSpot
                endpoints.MapGet("/Testing", async context =>
                {
                    var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Testing", "testing.html");
+                   
+                   var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
+                       .Replace("<!--HEADER-->", headerHtml)
+                       .Replace("<!--SIDEBAR-->", sideBarHtml)
+                       .Replace("<!--FOOTER-->", footerHtml);
                   
-                   // Загружаем шаблон страницы, вставляя в него элементы
+                   await context.Response.WriteAsync(html.ToString());
+               });
+               endpoints.MapGet("/About", async context =>
+               {
+                   var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "about.html");
+                   
                    var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
                        .Replace("<!--HEADER-->", headerHtml)
                        .Replace("<!--SIDEBAR-->", sideBarHtml)
@@ -57,6 +66,12 @@ namespace LifeSpot
                endpoints.MapGet("/Static/CSS/index.css", async context =>
                {
                    var cssPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "CSS", "index.css");
+                   var css = await File.ReadAllTextAsync(cssPath);
+                   await context.Response.WriteAsync(css);
+               });
+               endpoints.MapGet("/Static/CSS/about.css", async context =>
+               {
+                   var cssPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "CSS", "about.css");
                    var css = await File.ReadAllTextAsync(cssPath);
                    await context.Response.WriteAsync(css);
                });
@@ -76,6 +91,12 @@ namespace LifeSpot
                endpoints.MapGet("/Static/JS/search.js", async context =>
                {
                    var jsPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JS", "search.js");
+                   var js = await File.ReadAllTextAsync(jsPath);
+                   await context.Response.WriteAsync(js);
+               });
+               endpoints.MapGet("/Static/JS/feedback.js", async context =>
+               {
+                   var jsPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JS", "feedback.js");
                    var js = await File.ReadAllTextAsync(jsPath);
                    await context.Response.WriteAsync(js);
                });
