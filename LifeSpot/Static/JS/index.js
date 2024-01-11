@@ -1,16 +1,27 @@
 ﻿let userData = new Map();
 function getUserData (){
-
-    let userAgentString = window.navigator.userAgent;
-    let userName = prompt('Введите своё имя:');
-    userData.set('UserAgentString', userAgentString)
-            .set('UserName', userName)
+    userData.set('UserName', prompt('Введите своё имя:'));
 }
-function ageCheck (){
-    let userAge = prompt('Введите свой возраст:');
-    userData.set('UserAge', userAge)
-    if (userAge < 18){
+function getUserAgentString (){
+    userData.set('UserAgentString', window.navigator.userAgent);
+    userData.set("StartSessionDate", new Date().toLocaleString())
+}
+function checkAge (){
+    userData.set('UserAge', prompt('Введите свой возраст:'));
+    if (userData.get('UserAge') < 18) {
         alert('Ваш возраст меньше 18 лет!');
         window.location.href = "http://www.google.com";
     }
+}
+let sessionLog = function logSession() {
+    for (let result of userData){
+        console.log(result)
+    }
+}
+function askForInstagram (){
+    setTimeout(function () {
+
+        alert('Подпишитесь на наш Инстаграм!')
+
+    }, 10000);
 }

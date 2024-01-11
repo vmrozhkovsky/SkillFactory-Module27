@@ -1,6 +1,5 @@
-﻿document.getElementById("search").oninput = function() {searchFunction()};
-function searchFunction() {
-    let searchText = document.getElementById('search').value;
+﻿document.getElementById("search").oninput = function() {searchFunction(document.getElementById('search').value)};
+function searchFunction(searchText) {
     let videoElements = document.body.getElementsByClassName('video-container');
     for (let i = 0; i < videoElements.length; i++)
     {
