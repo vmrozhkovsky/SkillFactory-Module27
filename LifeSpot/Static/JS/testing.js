@@ -1,7 +1,18 @@
-﻿// let userName = prompt("Введите своё имя:");
-// let nameLength = userName.length;
-// alert(`Ваше имя ${userName}.\nВ нем ${nameLength} букв.`);
+﻿// Создаем объект Map
+let myMap = new Map();
+myMap.set("Германия", "Берлин")
+myMap.set("Швеция", "Стокгольм")
+myMap.set(1, "Москва")
 
-let htmlElements = document.getElementsByTagName('*');
-console.log(htmlElements);
-alert(`Количество HTML элементов на странице:  ${htmlElements.length}`);
+let newArray = [];
+// Перебор Map в цикле for
+for (let result of myMap){
+    newArray.push(result);
+}
+console.log(newArray);
+
+let newArrayOfStrings = [];
+// Перебор Map с помощью Array.from
+// Позволяет на лету выполнять операции с парой ключ-значение
+Array.from(myMap, ([key,value]) => newArrayOfStrings.push(`${key} - ${value}`) );
+console.log(newArrayOfStrings);
