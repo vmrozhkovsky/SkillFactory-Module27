@@ -1,31 +1,4 @@
-﻿// let userData = {};
-// function getUserData (){
-//     userData.UserName = prompt('Введите своё имя:');
-// }
-// function getUserAgentString (){
-//     userData.UserAgentString = window.navigator.userAgent;
-//     userData.StartSessionDate = new Date().toLocaleString();
-// }
-// function checkAge (){
-//     userData.UserAge = prompt('Введите свой возраст:');
-//     if (userData.UserAge < 18) {
-//         alert('Ваш возраст меньше 18 лет!');
-//         window.location.href = "http://www.google.com";
-//     }
-// }
-// let sessionLog = function logSession() {
-//     for (let result in userData){
-//         console.log(`${result} : ${userData[result]}`);
-//     }
-// }
-// function askForInstagram (){
-//     setTimeout(function () {
-//
-//         alert('Подпишитесь на наш Инстаграм!')
-//
-//     }, 10000);
-// }
-let userName = function ( newVisit ){
+﻿let userName = function ( newVisit ){
     if (newVisit){
         window.sessionStorage.setItem('UserName', prompt('Введите своё имя:'));
     }

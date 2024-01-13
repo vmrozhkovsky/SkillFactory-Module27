@@ -1,18 +1,6 @@
-﻿// Создаем объект Map
-let myMap = new Map();
-myMap.set("Германия", "Берлин")
-myMap.set("Швеция", "Стокгольм")
-myMap.set(1, "Москва")
-
-let newArray = [];
-// Перебор Map в цикле for
-for (let result of myMap){
-    newArray.push(result);
+﻿function saveUserInput (){
+let currentUserInput = document.getElementById('search').value;
+alert(currentUserInput);
+alert(`Предыдущий ввод: ${this.lastUserInput}\nТекущий ввод: ${currentUserInput}`);
+this.lastUserInput = currentUserInput;
 }
-console.log(newArray);
-
-let newArrayOfStrings = [];
-// Перебор Map с помощью Array.from
-// Позволяет на лету выполнять операции с парой ключ-значение
-Array.from(myMap, ([key,value]) => newArrayOfStrings.push(`${key} - ${value}`) );
-console.log(newArrayOfStrings);
