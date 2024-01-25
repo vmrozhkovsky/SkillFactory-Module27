@@ -1,26 +1,22 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.FileProviders;
 
 namespace LifeSpot
 {
     public static class EndpointMapper
     {
-        public static void MapJpg(this IEndpointRouteBuilder builder)
+        public static void MapJpg(IApplicationBuilder app)
         {
-            var jpgFiles = new[] { "slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg", };
-          
-            foreach (var fileName in jpgFiles)
-            {
-                builder.MapGet($"/Static/JPG/{fileName}", async context =>
-                {
-                    var jpgPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JPG", fileName);
-                    var jpg = await File.ReadAllTextAsync(jpgPath);
-                    await context.Response.WriteAsync(jpg);
-                });
-            }
+            string rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JPG");
+            PhysicalFileProvider fileProvider = new PhysicalFileProvider(rootPath);
+            string requestPath  = "/Static/JPG";
+            StaticFileOptions staticOptions = new StaticFileOptions(fileProvider, requestPath);
+            app.UseStaticFiles(staticOptions);
         }
         public static void MapCss(this IEndpointRouteBuilder builder)
         {
