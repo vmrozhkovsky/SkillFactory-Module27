@@ -131,6 +131,7 @@ public class Startup
             endpoints.MapCss();
             endpoints.MapJs();
             endpoints.MapHtml();
+            endpoints.MapJpg();
         });
     }
 }

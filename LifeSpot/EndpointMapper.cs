@@ -8,6 +8,20 @@ namespace LifeSpot
 {
     public static class EndpointMapper
     {
+        public static void MapJpg(this IEndpointRouteBuilder builder)
+        {
+            var jpgFiles = new[] { "slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg", };
+          
+            foreach (var fileName in jpgFiles)
+            {
+                builder.MapGet($"/Static/JPG/{fileName}", async context =>
+                {
+                    var jpgPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JPG", fileName);
+                    var jpg = await File.ReadAllTextAsync(jpgPath);
+                    await context.Response.WriteAsync(jpg);
+                });
+            }
+        }
         public static void MapCss(this IEndpointRouteBuilder builder)
         {
             var cssFiles = new[] { "index.css", "about.css" };
@@ -24,7 +38,7 @@ namespace LifeSpot
         }
         public static void MapJs(this IEndpointRouteBuilder builder)
         {
-            var jsFiles = new[] { "feedback.js", "index.js", "testing.js", "search.js" };
+            var jsFiles = new[] { "feedback.js", "index.js", "testing.js", "search.js", "slider.js" };
   
             foreach (var fileName in jsFiles)
             {
@@ -38,6 +52,7 @@ namespace LifeSpot
         }
         public static void MapHtml(this IEndpointRouteBuilder builder)
         {
+            string sliderHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "slider.html"));
             string headerHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "header.html"));
             string footerHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "footer.html"));
             string sideBarHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "sidebar.html"));
@@ -46,8 +61,7 @@ namespace LifeSpot
             {
                 var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "index.html");
                 var viewText = await File.ReadAllTextAsync(viewPath);
-      
-                // Загружаем шаблон страницы, вставляя в него элементы
+                
                 var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--HEADER-->", headerHtml)
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
@@ -58,9 +72,8 @@ namespace LifeSpot
   
             builder.MapGet("/Testing", async context =>
             {
-                var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "testing.html");
-      
-                // Загружаем шаблон страницы, вставляя в него элементы
+                var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Testing", "testing.html");
+                
                 var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--HEADER-->", headerHtml)
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
@@ -72,10 +85,10 @@ namespace LifeSpot
             builder.MapGet("/About", async context =>
             {
                 var viewPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "about.html");
-      
-                // Загружаем шаблон страницы, вставляя в него элементы
+                
                 var html =  new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--HEADER-->", headerHtml)
+                    .Replace("<!--SLIDER-->", sliderHtml)
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
                     .Replace("<!--FOOTER-->", footerHtml);
       
