@@ -11,21 +11,23 @@
     padding-top: 1%;
 }
 .slider-container {
+    max-width: 1000px;
     position: relative;
-    width: 600px;
-    height: 400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: grab;
+    overflow-x: hidden;
 }
 
-.slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.slide {
+    display: none;
+    width: 100%;
 }
 
-.slider img {
+.slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    pointer-events: none;
 }
 
 .prev-button,

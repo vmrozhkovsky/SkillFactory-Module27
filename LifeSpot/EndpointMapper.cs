@@ -12,11 +12,11 @@ namespace LifeSpot
     {
         public static void MapJpg(IApplicationBuilder app)
         {
-            string rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Static", "JPG");
-            PhysicalFileProvider fileProvider = new PhysicalFileProvider(rootPath);
-            string requestPath  = "/Static/JPG";
-            StaticFileOptions staticOptions = new StaticFileOptions(fileProvider, requestPath);
-            app.UseStaticFiles(staticOptions);
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Static", "JPG")),
+                RequestPath = "/Static/JPG"
+            });
         }
         public static void MapCss(this IEndpointRouteBuilder builder)
         {
